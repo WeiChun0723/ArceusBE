@@ -1,6 +1,6 @@
 package com.example.arceus.user.service
 
-import com.example.arceus.user.Resource
+import com.example.arceus.user.controller.Resource
 import com.example.arceus.user.model.User
 import com.example.arceus.user.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired

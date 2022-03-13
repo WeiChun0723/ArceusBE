@@ -1,4 +1,4 @@
-package com.example.arceus.user
+package com.example.arceus.user.controller
 
 data class Resource(
     val id: Int,
