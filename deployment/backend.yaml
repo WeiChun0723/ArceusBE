@@ -1,3 +1,4 @@
+#Unable to connect stateful set
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,3 +17,29 @@ spec:
       - name: arceus-backend
         image: weiclai/arceus-backend:1.0
         imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        env: # Setting Environmental Variables
+          - name: DB_HOST   # Setting Database host address
+            value: 172.17.0.3
+          - name: DB_NAME  # Setting Database name
+            value: arceus
+          - name: DB_USERNAME  # Setting Database username
+            value: root
+          - name: DB_PASSWORD # Setting Database password
+            value: weichunlai
+
+---
+# Define a 'Service' To Expose the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: arceus-service
+spec:
+  ports:
+    - protocol: "TCP"
+      port: 8080    # Port inside the cluster
+      targetPort: 8080  # Port exposed to the outside
+  selector:
+    app: arceus-backend
+  type: NodePort
